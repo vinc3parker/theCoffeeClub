@@ -1,12 +1,36 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Home Page</title>
+    <title>Home Page | The Coffee Club</title>
 {% endblock %}
 
 {% block content %}
 
 <h1>This is My Home Page</h1>
-<p>Rendering template /homeapp/home.html</p>
 
+<div id="map"></div>
+
+<script>
+    function initMap() {
+        console.log()
+        let map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 0, lng: 0}, // Set your desired initial map center
+            zoom: 12 // Set your desired initial zoom level
+        });
+
+        // Retrieve coffee shop data from Django view
+        let coffeeShops = JSON.parse('{{ coffee_shops|escapejs }}');
+
+        // Add coffee shop markers to the map
+        coffeeShops.forEach(function (coffeeShop) {
+            let marker = new google.maps.Marker({
+                position: {lat: coffeeShop.latitude, lng: coffeeShop.longitude}, // Specify the latitude and longitude for each coffee shop
+                map: map,
+                title: coffeeShop.name
+            });
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR3R78-xqLGZiZc0BSVEvJs27Pk-4aZR0&callback=initMap" async defer></script>
 {% endblock %}

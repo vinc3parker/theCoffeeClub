@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>New Review</h2>
+
+    <form method="POST" action="{% url 'new_review' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="coffee_shop">Coffee Shop:</label>
+            <input type="text" class="form-control" id="coffee_shop" name="coffee_shop" required>
+        </div>
+        <div class="form-group">
+            <label for="overall_rating">Overall Rating:</label>
+            <select class="form-control" id="overall_rating" name="overall_rating" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="coffee_rating">Coffee Rating:</label>
+            <select class="form-control" id="coffee_rating" name="coffee_rating" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="food_rating">Food Rating:</label>
+            <select class="form-control" id="food_rating" name="food_rating" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <!-- Add other rating fields as needed -->
+
+        <div class="form-group">
+            <label for="review">Review:</label>
+            <textarea class="form-control" id="review" name="review" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+</div>
+{% endblock %}

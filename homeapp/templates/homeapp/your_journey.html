@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Your Journey</h2>
+  <p>Here are the coffee shops you have visited along with your ratings and reviews:</p>
+
+  <ul class="list-group">
+    {% for coffee_shop in coffee_shops %}
+    <li class="list-group-item">
+      <h4>{{ coffee_shop.name }}</h4>
+      <p>Overall Rating: {{ coffee_shop.overall_rating }}/5</p>
+      <p>Coffee Rating: {{ coffee_shop.coffee_rating }}/5</p>
+      <p>Food Rating: {{ coffee_shop.food_rating }}/5</p>
+      <p>Price Rating: {{ coffee_shop.price_rating }}/5</p>
+      <p>Vibe Rating: {{ coffee_shop.vibe_rating }}/5</p>
+      <p>WiFi Rating: {{ coffee_shop.wifi_rating }}/5</p>
+      <p>Quiet Rating: {{ coffee_shop.quiet_rating }}/5</p>
+      <p>Meeting Rating: {{ coffee_shop.meeting_rating }}/5</p>
+      <p>Study/Work Rating: {{ coffee_shop.study_work_rating }}/5</p>
+      <p>Your Review: "{{ coffee_shop.review }}"</p>
+    </li>
+    {% endfor %}
+  </ul>
+  <a class="btn btn-primary" href="{% url 'new_review' %}">Start a New Review</a>
+</div>
+{% endblock %}
